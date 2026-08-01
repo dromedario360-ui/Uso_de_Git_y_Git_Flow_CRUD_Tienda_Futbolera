@@ -13,6 +13,8 @@ class ProductoService:
         return self.repositorio.obtener_por_categoria(categoria)
 
     def crear_producto(self, nombre, categoria, descripcion, talla, precio, stock, imagen) -> Producto:
+        if not isinstance(precio, (int, float)) or isinstance(precio, bool):
+            raise ValueError("El precio debe ser un numero valido")
         if not nombre or not categoria:
             raise ValueError("El nombre y la categoria son obligatorios")
         if precio <= 0:
