@@ -48,6 +48,8 @@ class ProductoService:
         return self.repositorio.actualizar(producto)
 
     def vender_producto(self, id_producto: int, cantidad: int = 1) -> Producto:
+        if cantidad <= 0:
+            raise ValueError("La cantidad a vender debe ser mayor a 0")
         producto = self.repositorio.obtener_por_id(id_producto)
         if producto is None:
             raise ValueError("El producto no existe")
