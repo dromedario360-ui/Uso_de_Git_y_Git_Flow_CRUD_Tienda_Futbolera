@@ -12,6 +12,10 @@ class ProductoService:
     def listar_por_categoria(self, categoria: str) -> List[Producto]:
         return self.repositorio.obtener_por_categoria(categoria)
 
+    def buscar_por_nombre(self, texto: str) -> List[Producto]:
+        texto = (texto or "").strip().lower()
+        return [p for p in self.repositorio.obtener_todos() if texto in p.nombre.lower()]
+
     def crear_producto(self, nombre, categoria, descripcion, talla, precio, stock, imagen) -> Producto:
         if not nombre or not categoria:
             raise ValueError("El nombre y la categoria son obligatorios")
