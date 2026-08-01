@@ -190,6 +190,7 @@ class VistaPrincipal:
 
     def guardar_edicion(self, id_producto):
         self.mensaje_editar.value = ""
+        self.campo_editar_nombre.value = (self.campo_editar_nombre.value or "").strip()
         try:
             self.servicio.actualizar_producto(
                 id_producto=id_producto,
